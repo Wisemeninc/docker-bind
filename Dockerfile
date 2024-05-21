@@ -14,10 +14,10 @@ ENV BIND_USER=bind \
     WEBMIN_VERSION=3.1 \
     DATA_DIR=/data
 
-COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
+# COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
 
-COPY --from=add-apt-repositories /etc/apt/sources.list /etc/apt/sources.list
-
+# COPY --from=add-apt-repositories /etc/apt/sources.list /etc/apt/sources.list
+RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D97A3AE911F63C51
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
