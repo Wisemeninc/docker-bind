@@ -1,6 +1,6 @@
 [![Circle CI](https://circleci.com/gh/sameersbn/docker-bind.svg?style=shield)](https://circleci.com/gh/sameersbn/docker-bind) [![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/bind/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/bind)
 Notes: Updated Ubuntu to 22.03, Bind to 9.18.18 and webmin to 2.111
-# haugaard1001/bind
+# sameersbn/bind:9.16.1-20200524
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
