@@ -5,13 +5,13 @@ RUN apt-get update \
  && apt-key adv --fetch-keys http://www.webmin.com/jcameron-key.asc \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:focal-20200423
+FROM ubuntu:22.04
 
 LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
-    BIND_VERSION=9.16.1 \
-    WEBMIN_VERSION=1.941 \
+    BIND_VERSION=9.19.24 \
+    WEBMIN_VERSION=3.1 \
     DATA_DIR=/data
 
 COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
