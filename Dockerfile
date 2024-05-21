@@ -10,7 +10,7 @@ FROM ubuntu:22.04
 LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
-    BIND_VERSION=9.19.24 \
+    BIND_VERSION=9.18.18 \
     WEBMIN_VERSION=2.111 \
     DATA_DIR=/data
 
@@ -24,7 +24,7 @@ ENV BIND_USER=bind \
 RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-      bind9=${BIND_VERSION}* bind9-host=${BIND_VERSION}* dnsutils \
+      bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
       webmin=${WEBMIN_VERSION}* \
  && rm -rf /var/lib/apt/lists/*
 
