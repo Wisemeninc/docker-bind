@@ -1,4 +1,4 @@
-FROM ubuntu:focal-20200423 AS add-apt-repositories
+FROM ubuntu:22.04 AS add-apt-repositories
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg \
