@@ -130,12 +130,12 @@ bind_options_config() {
     sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
   fi
 
-  if grep -q 'allow-query-cache { any; }' "/etc/bind/named.conf.options"; then
-    echo "Config exists"
-  else
-    echo "No Config"
-    sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
-  fi
+#  if grep -q 'allow-query-cache { any; }' "/etc/bind/named.conf.options"; then
+#    echo "Config exists"
+#  else
+#    echo "No Config"
+#    sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
+#  fi
   
   if grep -q 'notify yes;' "/etc/bind/named.conf.options"; then
     echo "Config exists"
