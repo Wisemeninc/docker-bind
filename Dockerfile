@@ -1,17 +1,18 @@
-FROM ubuntu:22.04 AS add-apt-repositories
+FROM ubuntu:24.04 AS add-apt-repositories
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg \
  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D97A3AE911F63C51 \
  && echo "deb http://download.webmin.com/download/repository sarge contrib" >> /etc/apt/sources.list
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
     BIND_VERSION=9.18.18 \
     WEBMIN_VERSION=2.111 \
+    NTP_VERSION=4.2.8 \
     DATA_DIR=/data
 
 # COPY --from=add-apt-repositories /etc/apt/trusted.gpg /etc/apt/trusted.gpg
@@ -26,8 +27,7 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
-      webmin=${WEBMIN_VERSION}* \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y ntp=1:4.2.8* \
+      webmin=${WEBMIN_VERSION}* ntp=1:${NTP_VERSION}* \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
