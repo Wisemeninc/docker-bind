@@ -109,13 +109,48 @@ first_init() {
 }
 
 bind_options_config() {
-  sed  -i '5i     recursion yes;' /etc/bind/named.conf.options
-  sed  -i '5i     allow-recursion { any; };' /etc/bind/named.conf.options
-  sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
-  sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
-  sed  -i '5i     notify yes;' /etc/bind/named.conf.options
-  sed  -i '5i     also-notify { };	' /etc/bind/named.conf.options
-  sed  -i '5i 	  allow-transfer { none; };' /etc/bind/named.conf.options
+  if grep -Fxq 'recursion yes' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i     recursion yes;' /etc/bind/named.conf.options
+  fi
+
+  if grep -Fxq 'allow-recursion { any; };' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i     allow-recursion { any; };' /etc/bind/named.conf.options
+  fi
+
+  if grep -Fxq 'allow-query { any; };' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
+  fi
+
+  if grep -Fxq 'allow-query-cache { any; }' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
+  fi
+  
+  if grep -Fxq 'notify yes;' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i     notify yes;' /etc/bind/named.conf.options
+  fi
+  
+  if grep -Fxq 'also-notify { };' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i     also-notify { };' /etc/bind/named.conf.options
+  fi
+    
+  if grep -Fxq 'allow-transfer { none; };' "/etc/bind/named.conf.options"; then
+    echo "Config exists"
+  else
+    sed  -i '5i 	  allow-transfer { none; };' /etc/bind/named.conf.options
+  fi
+  
 }
 
 ntp_server_config() {
@@ -132,7 +167,7 @@ ntp_server_config
 # allow arguments to be passed to named
 if [[ ${1:0:1} = '-' ]]; then
   EXTRA_ARGS="$*"
-  set --
+ip a  set --
 elif [[ ${1} == named || ${1} == "$(command -v named)" ]]; then
   EXTRA_ARGS="${*:2}"
   set --
