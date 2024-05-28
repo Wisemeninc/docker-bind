@@ -27,13 +27,14 @@ RUN rm -rf /etc/apt/apt.conf.d/docker-gzip-indexes \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
       bind9=1:${BIND_VERSION}* bind9-host=1:${BIND_VERSION}* dnsutils \
       webmin=${WEBMIN_VERSION}* \
+      ntp \
  && rm -rf /var/lib/apt/lists/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 
 RUN chmod 755 /sbin/entrypoint.sh
 
-EXPOSE 53/udp 53/tcp 10000/tcp
+EXPOSE 53/udp 53/tcp 123/udp 10000/tcp
 
 ENTRYPOINT ["/sbin/entrypoint.sh"]
 
