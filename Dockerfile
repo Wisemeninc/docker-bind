@@ -10,7 +10,7 @@ FROM ubuntu:24.04
 LABEL maintainer="sameer@damagehead.com"
 
 ENV BIND_USER=bind \
-    BIND_VERSION=9.18.18 \
+    BIND_VERSION=9.18.24 \
     WEBMIN_VERSION=2.111 \
     NTP_VERSION=4.2.8 \
     DATA_DIR=/data
