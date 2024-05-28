@@ -167,7 +167,7 @@ ntp_server_config() {
 create_pid_dir
 create_bind_data_dir
 create_bind_cache_dir
-# bind_options_config
+bind_options_config
 ntp_server_config
 
 # allow arguments to be passed to named
