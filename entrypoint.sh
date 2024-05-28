@@ -109,48 +109,54 @@ first_init() {
 }
 
 bind_options_config() {
-  if grep -Fxq 'recursion yes' "/etc/bind/named.conf.options"; then
+  if grep -q 'recursion yes' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i     recursion yes;' /etc/bind/named.conf.options
   fi
 
-  if grep -Fxq 'allow-recursion { any; };' "/etc/bind/named.conf.options"; then
+  if grep -q 'allow-recursion { any; };' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i     allow-recursion { any; };' /etc/bind/named.conf.options
   fi
 
-  if grep -Fxq 'allow-query { any; };' "/etc/bind/named.conf.options"; then
+  if grep -q 'allow-query { any; };' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
   fi
 
-  if grep -Fxq 'allow-query-cache { any; }' "/etc/bind/named.conf.options"; then
+  if grep -q 'allow-query-cache { any; }' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
   fi
   
-  if grep -Fxq 'notify yes;' "/etc/bind/named.conf.options"; then
+  if grep -q 'notify yes;' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i     notify yes;' /etc/bind/named.conf.options
   fi
   
-  if grep -Fxq 'also-notify { };' "/etc/bind/named.conf.options"; then
+  if grep -q 'also-notify { };' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i     also-notify { };' /etc/bind/named.conf.options
   fi
     
-  if grep -Fxq 'allow-transfer { none; };' "/etc/bind/named.conf.options"; then
+  if grep -q 'allow-transfer { none; };' "/etc/bind/named.conf.options"; then
     echo "Config exists"
   else
+    echo "No Config"
     sed  -i '5i 	  allow-transfer { none; };' /etc/bind/named.conf.options
   fi
-  
 }
 
 ntp_server_config() {
