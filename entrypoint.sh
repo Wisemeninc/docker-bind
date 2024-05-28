@@ -160,15 +160,15 @@ bind_options_config() {
 }
 
 ntp_server_config() {
-  sed  -i '/^pool/d' /etc/ntp.conf
-  sed  -i '1i pool dk.pool.ntp.org iburst' /etc/ntp.conf 
+  sed  -i '/^pool/d' /etc/ntpsec/ntp.conf
+  sed  -i '1i pool dk.pool.ntp.org iburst' /etc/ntpsec/ntp.conf 
 }
 
 create_pid_dir
 create_bind_data_dir
 create_bind_cache_dir
-bind_options_config
-# ntp_server_config
+# bind_options_config
+ntp_server_config
 
 # allow arguments to be passed to named
 if [[ ${1:0:1} = '-' ]]; then
