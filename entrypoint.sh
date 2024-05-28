@@ -108,20 +108,17 @@ first_init() {
   fi
 }
 
-bind_options_config{
-  bind_options_config() {
-#    sed -i 's/dnssec-validation auto;/dnssec-validation yes;/g' /etc/bind/named.conf.options
-#    sed -i 's/auth-nxdomain no;/auth-nxdomain yes;/g' /etc/bind/named.conf.options
-    sed  -i '5i     recursion yes;' /etc/bind/named.conf.options
-    sed  -i '5i     allow-recursion { any; };' /etc/bind/named.conf.options
-    sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
-    sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
-    sed  -i '5i     notify yes;' /etc/bind/named.conf.options
-    sed  -i '5i     also-notify { };	' /etc/bind/named.conf.options
-    sed  -i '5i 	  allow-transfer { none; };' /etc/bind/named.conf.options
+bind_options_config() {
+  sed  -i '5i     recursion yes;' /etc/bind/named.conf.options
+  sed  -i '5i     allow-recursion { any; };' /etc/bind/named.conf.options
+  sed  -i '5i 	  allow-query { any; };' /etc/bind/named.conf.options
+  sed  -i '5i 	  allow-query-cache { any; };' /etc/bind/named.conf.options
+  sed  -i '5i     notify yes;' /etc/bind/named.conf.options
+  sed  -i '5i     also-notify { };	' /etc/bind/named.conf.options
+  sed  -i '5i 	  allow-transfer { none; };' /etc/bind/named.conf.options
   }
 
-ntp_server_config{
+ntp_server_config() {
   sed  -i '/^pool/d' /etc/ntp.conf
   sed  -i '1i pool dk.pool.ntp.org iburst' /etc/ntp.conf 
 }
